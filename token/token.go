@@ -28,5 +28,19 @@ const (
 	RBRACE    = "}"
 
 	// Keywords
+	LET      = "LET"
 	FUNCTION = "FUNCTION"
 )
+
+var keywords = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
+// LookupIdent checks keywords table to see if given identifier is keyword
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return IDENT
+}
